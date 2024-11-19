@@ -17,9 +17,8 @@ return new class extends Migration
             $table->dateTime('tgl_tanggapan');
             $table->text('tanggapan');
             $table->unsignedBigInteger('id_petugas');
-            $table->enum('level');
+            
             $table->timestamps();
-
             $table->foreign('id_pengaduan')->references('id_pengaduan')->on('pengaduan');
             $table->foreign('id_petugas')->references('id_petugas')->on('petugas');
         });
