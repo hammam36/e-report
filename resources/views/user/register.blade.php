@@ -2,7 +2,6 @@
 <!-- extends untuk mengambil dan memperluas suatu file, bahasa kerennya impor -->
 @section ('css')
 <link rel="stylesheet" href="{{asset('css/landing.css')}}">
-<script src="jquery.js"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <style>
     :root {
@@ -35,12 +34,14 @@
         width: 100px;
         text-decoration: none;
     }
+
     .password {
         display: inline-block;
         width: 100%;
         position: relative;
-        border: 1px solid #000;
+        border: 1px #000;
     }
+
     .pass-icon {
         position: absolute;
         top: 10px;
@@ -49,6 +50,24 @@
         cursor: pointer;
     }
 </style>
+<script>
+    var viewIcon = "{{ asset('image/view.png') }}"; // URL gambar view
+    var hideIcon = "{{ asset('image/hide.png') }}"; // URL gambar hide
+
+    var a = 0;
+
+    function pass() {
+        if (a === 1) {
+            document.getElementById('password').type = 'password';
+            document.getElementById('pass-icon').src = viewIcon;
+            a = 0;
+        } else {
+            document.getElementById('password').type = 'text';
+            document.getElementById('pass-icon').src = hideIcon;
+            a = 1;
+        }
+    }
+</script>
 @endsection
 
 
@@ -79,8 +98,11 @@
                         <div class="form-group">
                             <div class="password">
                                 <input type="password" name="password" placeholder="Password" class="form-control" id="password">
-                                <img src="{{ asset('image/view.png') }}" alt="eye-open" onclick="pass()" class="pass-icon" id="pass-icon">
+                                <img src="{{ asset('image/hide.png') }}" alt="eye-open" onclick="pass()" class="pass-icon" id="pass-icon">
                             </div>
+                        </div>
+                        <div class="form-group">
+                            <input type="password" name="confirm password" placeholder="Confirm Password" class="form-control">
                         </div>
                         <div class="form-group">
                             <input type="number" name="telp" placeholder="Phone Number" class="form-control">
